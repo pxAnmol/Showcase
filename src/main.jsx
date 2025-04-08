@@ -7,8 +7,8 @@ import { Canvas } from "@react-three/fiber";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Canvas
-      camera={{ fov: 65, position: [2.3, 1.3, 4.3] }}
-      gl={{ powerPreference: "high-performance", stencil: false }}
+      camera={{ fov: 70, position: [2.7, 1.2, 4.8] }}
+      gl={{ powerPreference: "high-performance" }}
     >
       <Suspense fallback={null}>
         <App />

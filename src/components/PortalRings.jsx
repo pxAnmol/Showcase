@@ -15,13 +15,25 @@ const PortalRings = () => {
     "#ff3380",
     "#33ff33",
     "#ffff00",
-    "#ff3300",
+    "#ff4400",
+    "#00ff00",
+    "#0000ff",
+    "#ff0000",
+    "#8A2BE2",
+    "#00FF7F",
+    "#FF1493",
+    "#7FFFD4",
+    "#FFD700",
+    "#9400D3",
+    "#00CED1",
+    "#FF69B4",
+    "#4169E1",
   ];
 
   useFrame((state) => {
     const time = state.clock.elapsedTime;
 
-    const colorIndex = (time * 0.3) % colors.length;
+    const colorIndex = (time * 0.5) % colors.length;
     const color1 = new THREE.Color(colors[Math.floor(colorIndex)]);
     const color2 = new THREE.Color(
       colors[(Math.floor(colorIndex) + 1) % colors.length]
@@ -30,13 +42,18 @@ const PortalRings = () => {
 
     if (materialRef.current) {
       materialRef.current.emissive = mixedColor;
+      materialRef.current.emissiveIntensity = 3 + Math.sin(time * 1.5) * 1;
     }
 
     for (let i = 0; i < COUNT; i++) {
       const z =
-        ((time * 5 + i * SPACING) % TOTAL_DISTANCE) - TOTAL_DISTANCE / 2;
-      tempObject.position.set(0, 0, -z);
-      tempObject.scale.set(1 + Math.sin(time + i) * 0.1, 1, 1);
+        ((time * 3 + i * SPACING) % TOTAL_DISTANCE) - TOTAL_DISTANCE / 2;
+      const pulseScale = 1 + Math.sin(time * 1.2 + i * 0.3) * 0.08;
+      const randomOffset = Math.sin(i * 0.5) * 0.02;
+      const waveEffect = Math.cos(time * 0.8 + i * 0.3) * 0.03 + randomOffset;
+
+      tempObject.position.set(0, waveEffect, -z);
+      tempObject.scale.set(pulseScale, 1, 1);
       tempObject.updateMatrix();
       instancedMesh.current.setMatrixAt(i, tempObject.matrix);
     }
@@ -49,9 +66,9 @@ const PortalRings = () => {
       <meshStandardMaterial
         ref={materialRef}
         emissive={colors[0]}
-        emissiveIntensity={5}
-        roughness={0.2}
-        metalness={1}
+        emissiveIntensity={3}
+        roughness={0.1}
+        metalness={0.9}
         toneMapped={false}
       />
     </instancedMesh>

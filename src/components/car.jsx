@@ -11,10 +11,10 @@ export default function Car(props) {
   const wheelBackRight = useRef();
 
   useFrame((state, delta) => {
-    wheelFrontLeft.current.rotation.x += delta * 7;
-    wheelFrontRight.current.rotation.x += delta * 7;
-    wheelBackLeft.current.rotation.x += delta * 7;
-    wheelBackRight.current.rotation.x += delta * 7;
+    wheelFrontLeft.current.rotation.x += delta * 6;
+    wheelFrontRight.current.rotation.x += delta * 6;
+    wheelBackLeft.current.rotation.x += delta * 6;
+    wheelBackRight.current.rotation.x += delta * 6;
   });
 
   return (

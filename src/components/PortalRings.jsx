@@ -47,7 +47,7 @@ const PortalRings = () => {
 
     for (let i = 0; i < COUNT; i++) {
       const z =
-        ((time * 3 + i * SPACING) % TOTAL_DISTANCE) - TOTAL_DISTANCE / 2;
+        ((time * 5 + i * SPACING) % TOTAL_DISTANCE) - TOTAL_DISTANCE / 2;
       const pulseScale = 1 + Math.sin(time * 1.2 + i * 0.3) * 0.08;
       const randomOffset = Math.sin(i * 0.5) * 0.02;
       const waveEffect = Math.cos(time * 0.8 + i * 0.3) * 0.03 + randomOffset;

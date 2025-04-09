@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 const LightTrails = () => {
-  const count = 25;
+  const count = 30;
   const trails = useRef([]);
   const materials = useRef([]);
 
@@ -40,9 +40,9 @@ const LightTrails = () => {
       x = (Math.random() - 0.5) * 12;
     }
 
-    let y = Math.random() * 6;
+    let y = Math.random() * 4.5;
     while (y >= 0 && y <= 1) {
-      y = Math.random() * 6;
+      y = Math.random() * 5;
     }
 
     return {

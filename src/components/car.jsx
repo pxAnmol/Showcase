@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
 export default function Car(props) {
@@ -10,15 +10,37 @@ export default function Car(props) {
   const wheelBackLeft = useRef();
   const wheelBackRight = useRef();
 
+  const numberPlate = useRef();
+
   useFrame((state, delta) => {
     wheelFrontLeft.current.rotation.x += delta * 6;
     wheelFrontRight.current.rotation.x += delta * 6;
     wheelBackLeft.current.rotation.x += delta * 6;
     wheelBackRight.current.rotation.x += delta * 6;
+
+    if (numberPlate.current) {
+      numberPlate.current.position.set(0.22, 0.73, -2.735);
+      numberPlate.current.rotation.x = -Math.PI;
+      numberPlate.current.rotation.y = 0;
+      numberPlate.current.rotation.z = -Math.PI;
+    }
   });
 
   return (
     <group {...props} dispose={null}>
+      {/* Number Plate */}
+      <group ref={numberPlate}>
+      <Text3D
+        font="./Moon Dance_Regular.json"
+        depth={0.1}
+        size={0.1}
+        textAlign="center"
+        anchorX="center"
+        anchorY="middle"
+      >
+        ANMOL
+      </Text3D>
+    </group>
       {/* Front Left Wheel */}
       <group
         ref={wheelFrontLeft}

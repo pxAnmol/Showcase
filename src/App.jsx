@@ -92,7 +92,7 @@ const App = ({ isExperienceStarted }) => {
       {/* <Perf position="top-left" /> */}
       <OrbitControls
         ref={orbitControlsRef}
-        maxDistance={13}
+        maxDistance={11}
         minDistance={1}
         maxPolarAngle={Math.PI * 0.48}
         enablePan={false}
